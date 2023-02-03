@@ -27,6 +27,6 @@ db.getCollection('Restaurantes').find({}).sort({name:-1});
 db.getCollection('Restaurantes').find({}).sort({cuisine:-1,borough:-1});
 db.getCollection('Restaurantes').find({"address.street":{"$exists":false}});
 db.getCollection('Restaurantes').find({"address.coord":{"$type":"double"}});
-db.getCollection('Restaurantes').find({$where: "grades.score% 7==0"},{restaurant_id:1,name:1,"grades.grade":1});
+db.getCollection('Restaurantes').find({"grades.score": {$mod: [7,0]}},{restaurant_id:1,name:1,"grades.grade":1});
 db.getCollection('Restaurantes').find({name:{$regex: /mon/i}},{name:1,borough:1,cuisine:1,"address.coord":1})
 db.getCollection('Restaurantes').find({name:{$regex: "^Mad"}},{name:1,borough:1,cuisine:1,"address.coord":1})
